@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import cl.egonzalezm.gestionusuario.gestionusuario.constrain.PasswordConstrain;
 
 @Entity
 @Table(name = "USUARIO", uniqueConstraints = @UniqueConstraint(columnNames = { "EMAIL" }))
@@ -27,9 +30,11 @@ public class Usuario {
 	private String name;
 
 	@Column(name = "EMAIL")
+	@Email
 	private String email;
 
 	@Column(name = "PASSWORD")
+	@PasswordConstrain
 	private String password;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
