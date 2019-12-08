@@ -1,11 +1,13 @@
 package cl.egonzalezm.gestionusuario.gestionusuario.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,7 +24,7 @@ public class Usuario {
 
 	@Id
 	@Column(name = "ID")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonIgnore
 	private Long id;
 
@@ -36,6 +38,15 @@ public class Usuario {
 	@Column(name = "PASSWORD")
 	@PasswordConstrain
 	private String password;
+
+	@Column(name = "FECHA_CREACION")
+	private Date fechaCreacion;
+
+	@Column(name = "FECHA_MODIFICACION")
+	private Date fechaModificacion;
+
+	@Column(name = "ACTIVO")
+	private Boolean activo;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Phone> phones;
@@ -78,6 +89,30 @@ public class Usuario {
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 }

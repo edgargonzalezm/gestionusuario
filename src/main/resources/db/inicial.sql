@@ -1,0 +1,1 @@
+insert into usuario(email, name, password, id) values ('admin@admin.cl', 'admin', 'Admin123', '1');

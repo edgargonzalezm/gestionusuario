@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.egonzalezm.gestionusuario.gestionusuario.domain.UsuarioResponse;
 import cl.egonzalezm.gestionusuario.gestionusuario.entity.Usuario;
 import cl.egonzalezm.gestionusuario.gestionusuario.services.UsuarioService;
 
@@ -21,7 +22,7 @@ public class UsuarioController {
 
 	@PostMapping(value = "/usuario", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> crearUsuario(@Valid @RequestBody Usuario usuario) {
-		Usuario usuarioNuevo = usuarioService.crearUsuario(usuario);
+		UsuarioResponse usuarioNuevo = usuarioService.crearUsuario(usuario);
 		return new ResponseEntity<>(usuarioNuevo, HttpStatus.OK);
 	}
 
